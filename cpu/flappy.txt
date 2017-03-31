@@ -1,0 +1,682 @@
+
+// 25 * 15
+
+// << 0xBF01 : putchar
+// << 0xBF02 : (xpos << 8) + ypos
+// << 0xBF03 : clear (any input)
+// << 0xBF04 : set features: bit 0 -- scrolling
+
+// >> 0xBF01 : COM state
+// >> 0xBF02 : return (xpos << 8) + ypos
+// >> 0xBF03 : bit 0 -- [clk is pressed], bit 8 -- [clk has been pressed since last call]
+// >> 0xBF04 : get features
+
+#define port_putchar 0x01
+#define port_set_pos 0x02
+#define port_clear 0x03
+#define port_set_feature 0x04
+
+#define port_get_COM_state 0x01
+#define port_get_pos 0x02
+#define port_get_clk_state 0x03
+#define port_get_feature 0x04
+
+// R0 - parameter
+// R1
+// R2
+// R3
+// R4
+// R5 - tmp
+// R6 - tmp
+// R7 - 0xBF00
+
+// SP = 0x8000
+#define x 0x01
+#define y 0x02
+#define vy 0x03
+#define tube_x 0x04
+#define tube_upper_y 0x05
+#define tube_lower_y 0x06
+#define tube_upper_cnt 0x07
+#define tube_lower_cnt 0x08
+#define score 0x09
+#define sum_y 0x0a
+#define last_clk_state 0x0b
+
+
+#define set_addr(x) LI R6 x ;
+#define call JR R6 ;
+
+#define JRRA MFIH R0
+
+B main
+NOP
+
+#define putchar 0x02
+	SW R7 R0 0x1
+	JRRA
+	NOP
+
+#define clear 0x05
+	SW R7 R7 0x3
+	JRRA
+	NOP
+
+#define reset_pos 0x08
+	LI R6 0x0
+	SW R7 R6 0x2
+	JRRA
+	NOP
+
+#define set_pos 0x0c
+	SW R7 R0 0x2
+	JRRA
+	NOP
+
+#define disable_scrolling 0x0f
+	LW R7 R6 0x4
+	LI R5 0xfe
+	AND R6 R5
+	SW R7 R6 0x4
+	JRRA
+	NOP
+
+#define write_COM 0x15
+	write_COM_testW_loop:
+		LW R7 R6 0x1
+		LI R5 0x01
+		AND R5 R6
+		BEQZ R5 write_COM_testW_loop  // [0xbf01] & 1 == 0
+		NOP
+	SW R7 R0 0x0
+	JRRA
+	NOP
+
+#define MOD_14 0x1d
+	SLTI R0 0x0e
+	BTNEZ MOD_14_return
+	NOP
+	ADDIU R0 0xf2
+	MOD_14_return:
+		JRRA
+		NOP
+
+#define MOD_25 0x23
+	SLTI R0 0x19
+	BTNEZ MOD_25_return
+	NOP
+	ADDIU R0 0xe7
+	MOD_25_return:
+		JRRA
+		NOP
+
+#define sleep 0x29
+	LI R5 0x00
+	sleep_loop_1:
+		LI R6 0x02
+		sleep_loop_2:
+			ADDIU R6 0xff
+			BNEZ R6 sleep_loop_2
+			NOP
+		ADDIU R5 0x01
+		BNEZ R5 sleep_loop_1
+		NOP
+	JRRA
+	NOP
+
+#define read_COM 0x33  // return val : R0
+	read_COM_testR_loop:
+		LW R7 R6 0x1
+		LI R5 0x02
+		AND R5 R6
+		BEQZ R5 read_COM_testR_loop  // [0xbf01] & 2 == 0
+		NOP
+	LW R7 R0 0x0
+	JRRA
+	NOP
+
+#define die_0 0x3b
+	die_loop:
+		NOP
+		B die_loop
+		NOP
+
+#define new_tube_0 0x3e
+	LI R0 0x02
+	SLL R0 R0 0x0
+	// ADDIU R0 0x70  // 0x0270, 624
+	ADDIU R0 0x58  // 0x0258, 600
+	SW_SP R0 tube_x
+	
+	LI R0 0x05
+	SW_SP R0 tube_upper_cnt
+	
+	LI R0 0x0a
+	SW_SP R0 tube_lower_cnt
+	
+	LI R0 0x96
+	SW_SP R0 tube_upper_y
+	
+	LI R0 0x01
+	SLL R0 R0 0x0
+	ADDIU R0 0x2c  // 0x012c, 300
+	SW_SP R0 tube_lower_y
+	
+	JRRA
+	NOP
+
+#define get_ypos 0x4e
+	LW_SP R1 y
+	LI R0 0x00
+	get_ypos_loop:
+		SLTI R1 0x1e  // R1 < 30
+		BTNEZ get_ypos_loop_end
+		NOP
+		ADDIU R1 0xe2  // -30
+		ADDIU R0 0x01
+		B get_ypos_loop
+		NOP
+	get_ypos_loop_end:
+	JRRA
+	NOP
+
+#define get_tube_x_pos 0x59
+	LW_SP R1 tube_x
+	LI R0 0x00
+	get_tube_x_pos_loop:
+		SLTI R1 0x19  // R1 < 25
+		BTNEZ get_tube_x_pos_loop_end
+		NOP
+		ADDIU R1 0xe7  // -25
+		ADDIU R0 0x01
+		B get_tube_x_pos_loop
+		NOP
+	get_tube_x_pos_loop_end:
+	JRRA
+	NOP
+
+#define print_score 0x64
+	LI R0 0x00
+	SW R7 R0 port_set_pos
+	LI R0 0x53  // 83, 'S'
+	SW R7 R0 port_putchar
+	
+	LI R0 0x01
+	SW R7 R0 port_set_pos
+	LI R0 0x63  //  'c'
+	SW R7 R0 port_putchar
+	
+	LI R0 0x02
+	SW R7 R0 port_set_pos
+	LI R0 0x6f  //  'o'
+	SW R7 R0 port_putchar
+	
+	LI R0 0x03
+	SW R7 R0 port_set_pos
+	LI R0 0x72  //  'r'
+	SW R7 R0 port_putchar
+	
+	LI R0 0x04
+	SW R7 R0 port_set_pos
+	LI R0 0x65  //  'e'
+	SW R7 R0 port_putchar
+	
+	LI R0 0x05
+	SW R7 R0 port_set_pos
+	LI R0 0x3a  //  ':'
+	SW R7 R0 port_putchar
+	
+	LI R0 0x06
+	SW R7 R0 port_set_pos
+	LI R0 0x20  //  ' '
+	SW R7 R0 port_putchar
+	
+	
+	
+	LI R0 0x07
+	SW R7 R0 port_set_pos
+	
+	LW_SP R0 score
+	ADDIU R0 0x40
+	SW R7 R0 port_putchar // putchar (score + '@')
+	JRRA
+	NOP
+
+#define die 0x87
+	die_loop_1:
+		LW_SP R0 last_clk_state
+		LW R7 R1 0x3
+		SW_SP R1 last_clk_state
+		LI R2 0x1
+		AND R0 R2
+		AND R1 R2
+		BNEZ R0 die_loop_1
+		NOP
+		BEQZ R1 die_loop_1
+		NOP
+	
+	SW R7 R0 port_clear
+	
+	die_loop_2:
+		LW_SP R0 last_clk_state
+		LW R7 R1 0x3
+		SW_SP R1 last_clk_state
+		LI R2 0x1
+		AND R0 R2
+		AND R1 R2
+		BNEZ R0 die_loop_2
+		NOP
+		BEQZ R1 die_loop_2
+		NOP
+	
+	B main
+	NOP
+
+#define new_tube 0x9e
+	LI R0 0x02
+	SLL R0 R0 0x0
+	// ADDIU R0 0x70  // 0x0270, 624
+	ADDIU R0 0x58  // 0x0258, 600
+	SW_SP R0 tube_x
+	
+	LW_SP R0 sum_y
+	LI R1 0x7
+	AND R0 R1
+	ADDIU R0 0x1
+	// [1, 8]
+	
+	// LI R0 0x05
+	SW_SP R0 tube_upper_cnt
+	
+	// LI R0 0x0a
+	ADDIU R0 0x4
+	SW_SP R0 tube_lower_cnt
+	
+	
+	LW_SP R0 tube_upper_cnt
+	MOVE R1 R0
+	SLL R0 R0 0x5
+	SUBU R0 R1 R0
+	SUBU R0 R1 R0
+	SW_SP R0 tube_upper_y
+	
+	LW_SP R0 tube_lower_cnt
+	MOVE R1 R0
+	SLL R0 R0 0x5
+	SUBU R0 R1 R0
+	SUBU R0 R1 R0
+	SW_SP R0 tube_lower_y
+	
+	JRRA
+	NOP
+
+main:
+	LI R7 0xBF
+	SLL R7 R7 0x0
+	
+	LI R0 0x80
+	SLL R0 R0 0x00
+	MTSP R0  // SP = 0x8000
+	
+	LI R0 0x01
+	SLL R0 R0 0x0
+	ADDIU R0 0x2c  // R0 = 0x012c = 300
+	SW_SP R0 x
+	
+	LI R0 0xff  // 255, poisonous saffah
+	SW_SP R0 y
+	
+	LI R0 0x00
+	SW_SP R0 vy
+	
+	
+	LI R0 0x00
+	SW_SP R0 last_clk_state
+	
+	LI R0 0x00
+	SW_SP R0 print_score
+	
+	LI R0 0x00
+	SW_SP R0 score
+	
+	
+	set_addr(new_tube);
+	call();
+	NOP
+	
+	
+	
+	set_addr(clear);
+	call();
+	NOP
+	
+	set_addr(disable_scrolling);
+	call();
+	NOP
+	
+	main_loop:
+		// done: jump
+		
+		LW_SP R0 last_clk_state
+		LW R7 R1 0x3
+		SW_SP R1 last_clk_state
+		LI R2 0x1
+		AND R0 R2
+		AND R1 R2
+		BNEZ R0 no_set_vy
+		NOP
+		BEQZ R1 no_set_vy
+		NOP
+		
+		set_vy:
+			LI R0 0x00
+			ADDIU R0 0xf0  // -16
+			SW_SP R0 vy
+		no_set_vy:
+		
+		// y += vy
+		LW_SP R0 y
+		LW_SP R1 vy
+		ADDU R0 R1 R0
+		ADDIU R1 0x02
+		SW_SP R0 y
+		SW_SP R1 vy
+		
+		LW_SP R3 sum_y
+		ADDU R0 R3 R3
+		SW_SP R3 sum_y
+		
+		// R0 : y
+		// done: die
+		
+		SRA R0 R0 0x2
+		SLTI R0 0x6d  // T = !(y / 4 < 109), poisonous saffah
+		BTNEZ no_die_y_too_large
+		NOP
+		
+		die_y_too_large:
+			set_addr(die);
+			call();
+			NOP
+		no_die_y_too_large:
+		
+		
+		LW_SP R0 tube_x
+		ADDIU R0 0xec  // -25
+		SW_SP R0 tube_x
+		
+		BNEZ R0 no_new_tube
+		NOP
+		set_addr(new_tube);
+		call();
+		NOP
+		no_new_tube:
+		
+		
+		// todo: die on tube
+		
+		LW_SP R0 x
+		LW_SP R1 tube_x
+		CMP R0 R1
+		BTNEZ no_check_die_on_tube
+		
+		check_die_on_tube:
+			
+			LW_SP R0 y
+			LW_SP R1 tube_upper_y
+			SUBU R0 R1 R0
+			SLTI R0 0x00  // T = !(y - tube_upper_y < 0), poisonous saffah
+			BTEQZ no_die_hit_upper_part
+			NOP
+			
+			die_hit_upper_part:
+				set_addr(die);
+				call();
+				NOP
+			no_die_hit_upper_part:
+			
+			
+			LW_SP R0 y
+			LW_SP R1 tube_lower_y
+			SUBU R0 R1 R0
+			SLTI R0 0x00  // T = !(y - tube_lower_y < 0), poisonous saffah
+			BTNEZ no_die_hit_lower_part
+			NOP
+			
+			die_hit_lower_part:
+				set_addr(die);
+				call();
+				NOP
+			no_die_hit_lower_part:
+			
+			NOP
+			
+		no_check_die_on_tube:
+		
+		
+		
+		
+		LW_SP R0 tube_x
+		LW_SP R1 x
+		CMP R0 R1
+		BTNEZ no_check_die_on_tube
+		NOP
+		
+		check_die_on_tube:
+			LW_SP R0 score
+			ADDIU R0 0x01
+			SW_SP R0 score
+		no_check_die_on_tube:
+		
+		// render begin
+		set_addr(clear);
+		call();
+		NOP
+		
+		set_addr(get_tube_x_pos);
+		call();
+		NOP
+		// R0 : x_pos
+		
+		MOVE R1 R0
+		LW_SP R2 tube_upper_cnt
+		
+		render_setpos_loop_1:
+			ADDIU R2 0xff  // R2 : y_pos
+			SLL R3 R2 0x0  // y_pos << 8
+			ADDU R1 R3 R3
+			
+			SW R7 R3 0x2 // set_pos
+			
+			LI R0 0x7c  // 124, '|'
+			set_addr(putchar);
+			call();
+			NOP
+			BNEZ R2 render_setpos_loop_1  // if R2 > 0 loop
+			NOP
+		
+		LW_SP R2 tube_lower_cnt
+		ADDIU R2 0xf1
+		render_setpos_loop_2:
+			ADDIU R2 0x0f  // R2 : y_pos
+			SLL R3 R2 0x0  // y_pos << 8
+			ADDU R1 R3 R3
+			
+			SW R7 R3 0x2 // set_pos
+			
+			LI R0 0x7c  // 124, '|'
+			set_addr(putchar);
+			call();
+			NOP
+			ADDIU R2 0x01
+			ADDIU R2 0xf1  // -15
+			BNEZ R2 render_setpos_loop_2  // if R2 != 15 loop
+			NOP
+		
+		set_addr(get_ypos);
+		call();
+		NOP
+		
+		LI R1 0x0b  // x_pos == 11
+		SLL R0 R0 0x0
+		ADDU R0 R1 R0
+		SW R7 R0 0x2 // set_pos
+		
+		LI R0 0x23  // 35, '#'
+		set_addr(putchar);
+		call();
+		NOP
+		
+		set_addr(print_score);
+		call();
+		NOP
+		
+		set_addr(sleep);
+		call();
+		NOP
+		
+		B main_loop
+		NOP
+	
+	
+
+
+
+
+
+// main_trash:
+// 	LI R7 0xBF
+// 	SLL R7 R7 0x0
+	
+// 	set_addr(clear);
+// 	call();
+// 	NOP
+	
+// 	set_addr(disable_scrolling);
+// 	call();
+// 	NOP
+	
+// 	LI R1 0x00
+// 	LI R2 0x00
+	
+// 	LI R3 0x00
+	
+// 	main_loop:
+// 		set_addr(clear);
+// 		call();
+// 		NOP
+		
+// 		// R1 - x
+// 		// R2 - y
+// 		// R3 - state: bit 0 - x_neg, bit 1 - y_neg
+		
+// 		LI R0 0x01
+// 		AND R0 R3
+// 		BEQZ R0 main_loop_add_x
+// 		NOP
+		
+// 		main_loop_sub_x:
+// 			MOVE R0 R1
+// 			ADDIU R0 0xff
+// 			// if (R0 == 0) x_neg = 0
+// 			BNEZ R0 after_set_x_neg_0
+// 			NOP
+// 			set_x_neg_0:
+// 				LI R0 0xfe
+// 				AND R3 R0
+// 				LI R0 0x00
+				
+// 			after_set_x_neg_0:
+			
+// 			MOVE R1 R0
+// 			B main_loop_x_end
+// 			NOP
+		
+// 		main_loop_add_x:
+// 			MOVE R0 R1
+// 			ADDIU R0 0x01
+// 			set_addr(MOD_14);
+// 			call();
+// 			NOP
+// 			// if (R0 == 0) R0 = 12, x_neg = 1
+// 			BNEZ R0 after_set_x_neg_1
+// 			NOP
+// 			set_x_neg_1:
+// 				LI R0 0x01
+// 				OR R3 R0
+// 				LI R0 0x0c  // 12
+// 			after_set_x_neg_1:
+			
+// 			MOVE R1 R0
+		
+// 		main_loop_x_end:
+		
+		
+		
+// 		LI R0 0x02
+// 		AND R0 R3
+// 		BEQZ R0 main_loop_add_y
+// 		NOP
+		
+// 		main_loop_sub_y:
+// 			MOVE R0 R2
+// 			ADDIU R0 0xff
+// 			// if (R0 == 0) y_neg = 0
+// 			BNEZ R0 after_set_y_neg_0
+// 			NOP
+// 			set_y_neg_0:
+// 				LI R0 0xfd
+// 				AND R3 R0
+// 				LI R0 0x00
+				
+// 			after_set_y_neg_0:
+			
+// 			MOVE R2 R0
+// 			B main_loop_y_end
+// 			NOP
+		
+// 		main_loop_add_y:
+// 			MOVE R0 R2
+// 			ADDIU R0 0x01
+// 			set_addr(MOD_25);
+// 			call();
+// 			NOP
+// 			// if (R0 == 0) R0 = 23, y_neg = 1
+// 			BNEZ R0 after_set_y_neg_1
+// 			NOP
+// 			set_y_neg_1:
+// 				LI R0 0x02
+// 				OR R3 R0
+// 				LI R0 0x17  // 23
+// 			after_set_y_neg_1:
+			
+// 			MOVE R2 R0
+		
+// 		main_loop_y_end:
+		
+		
+		
+// 		MOVE R0 R1
+// 		SLL R0 R0 0x0
+// 		ADDU R0 R2 R0
+// 		set_addr(set_pos);
+// 		call();
+// 		NOP
+		
+// 		LI R0 0x42
+// 		set_addr(putchar);
+// 		call();
+// 		NOP
+		
+// 		LI R0 0x41
+// 		set_addr(write_COM);
+// 		call();
+// 		NOP
+		
+// 		set_addr(sleep);
+// 		call();
+// 		NOP
+		
+// 		B main_loop
+// 		NOP
+

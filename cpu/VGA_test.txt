@@ -1,0 +1,238 @@
+
+// 25 * 15
+
+// << 0xBF01 : putchar
+// << 0xBF02 : (xpos << 8) + ypos
+// << 0xBF03 : clear (any input)
+// << 0xBF04 : set features: bit 0 -- scrolling
+
+// >> 0xBF01 : COM state
+// >> 0xBF02 : return (xpos << 8) + ypos
+// >> 0xBF03 : bit 0 -- [clk is pressed], bit 8 -- [clk has been pressed since last call]
+// >> 0xBF04 : get features
+
+// R0 - parameter
+// R1
+// R2
+// R3
+// R4
+// R5 - tmp
+// R6 - tmp
+// R7 - 0xBF00
+
+#define set_addr(x) LI R6 x ;
+#define call JR R6 ;
+
+#define JRRA MFIH R0
+
+B main
+NOP
+
+#define putchar 0x02
+	SW R7 R0 0x1
+	JRRA
+	NOP
+
+#define clear 0x05
+	SW R7 R7 0x3
+	JRRA
+	NOP
+
+#define reset_pos 0x08
+	LI R6 0x0
+	SW R7 R6 0x2
+	JRRA
+	NOP
+
+#define set_pos 0x0c
+	SW R7 R0 0x2
+	JRRA
+	NOP
+
+#define disable_scrolling 0x0f
+	LW R7 R6 0x4
+	LI R5 0xfe
+	AND R6 R5
+	SW R7 R6 0x4
+	JRRA
+	NOP
+
+#define write_COM 0x15
+	testW_loop:
+		LW R7 R6 0x1
+		LI R5 0x01
+		AND R5 R6
+		BEQZ R5 testW_loop  // [0xbf01] & 1 == 0
+		NOP
+	SW R7 R0 0x0
+	JRRA
+	NOP
+
+#define MOD_14 0x1d
+	SLTI R0 0x0e
+	BTNEZ MOD_14_return
+	NOP
+	ADDIU R0 0xf2
+	MOD_14_return:
+		JRRA
+		NOP
+
+#define MOD_25 0x23
+	SLTI R0 0x19
+	BTNEZ MOD_25_return
+	NOP
+	ADDIU R0 0xe7
+	MOD_25_return:
+		JRRA
+		NOP
+
+#define sleep 0x29
+	LI R5 0x00
+	sleep_loop_1:
+		LI R6 0x05
+		sleep_loop_2:
+			ADDIU R6 0xff
+			BNEZ R6 sleep_loop_2
+			NOP
+		ADDIU R5 0x01
+		BNEZ R5 sleep_loop_1
+		NOP
+	JRRA
+	NOP
+
+main:
+	LI R7 0xBF
+	SLL R7 R7 0x0
+	
+	set_addr(clear);
+	call();
+	NOP
+	
+	set_addr(disable_scrolling);
+	call();
+	NOP
+	
+	LI R1 0x00
+	LI R2 0x00
+	
+	LI R3 0x00
+	
+	main_loop:
+		set_addr(clear);
+		call();
+		NOP
+		
+		// R1 - x
+		// R2 - y
+		// R3 - state: bit 0 - x_neg, bit 1 - y_neg
+		
+		LI R0 0x01
+		AND R0 R3
+		BEQZ R0 main_loop_add_x
+		NOP
+		
+		main_loop_sub_x:
+			MOVE R0 R1
+			ADDIU R0 0xff
+			// if (R0 == 0) x_neg = 0
+			BNEZ R0 after_set_x_neg_0
+			NOP
+			set_x_neg_0:
+				LI R0 0xfe
+				AND R3 R0
+				LI R0 0x00
+				
+			after_set_x_neg_0:
+			
+			MOVE R1 R0
+			B main_loop_x_end
+			NOP
+		
+		main_loop_add_x:
+			MOVE R0 R1
+			ADDIU R0 0x01
+			set_addr(MOD_14);
+			call();
+			NOP
+			// if (R0 == 0) R0 = 12, x_neg = 1
+			BNEZ R0 after_set_x_neg_1
+			NOP
+			set_x_neg_1:
+				LI R0 0x01
+				OR R3 R0
+				LI R0 0x0c  // 12
+			after_set_x_neg_1:
+			
+			MOVE R1 R0
+		
+		main_loop_x_end:
+		
+		
+		
+		LI R0 0x02
+		AND R0 R3
+		BEQZ R0 main_loop_add_y
+		NOP
+		
+		main_loop_sub_y:
+			MOVE R0 R2
+			ADDIU R0 0xff
+			// if (R0 == 0) y_neg = 0
+			BNEZ R0 after_set_y_neg_0
+			NOP
+			set_y_neg_0:
+				LI R0 0xfd
+				AND R3 R0
+				LI R0 0x00
+				
+			after_set_y_neg_0:
+			
+			MOVE R2 R0
+			B main_loop_y_end
+			NOP
+		
+		main_loop_add_y:
+			MOVE R0 R2
+			ADDIU R0 0x01
+			set_addr(MOD_25);
+			call();
+			NOP
+			// if (R0 == 0) R0 = 23, y_neg = 1
+			BNEZ R0 after_set_y_neg_1
+			NOP
+			set_y_neg_1:
+				LI R0 0x02
+				OR R3 R0
+				LI R0 0x17  // 23
+			after_set_y_neg_1:
+			
+			MOVE R2 R0
+		
+		main_loop_y_end:
+		
+		
+		
+		MOVE R0 R1
+		SLL R0 R0 0x0
+		ADDU R0 R2 R0
+		set_addr(set_pos);
+		call();
+		NOP
+		
+		LI R0 0x42
+		set_addr(putchar);
+		call();
+		NOP
+		
+		LI R0 0x41
+		set_addr(write_COM);
+		call();
+		NOP
+		
+		set_addr(sleep);
+		call();
+		NOP
+		
+		B main_loop
+		NOP
+

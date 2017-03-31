@@ -1,0 +1,31 @@
+#define NOP				00001 000 000 00000
+#define B(i)			00010 i
+#define BEQZ(x, i)		00100 x i
+#define BNEZ(x, i)		00101 x i
+#define SLL(x, y, i)	00110 x y i 00
+#define SRA(x, y, i)	00110 x y i 11
+#define ADDIU3(x, y, i)	01000 x y 0 i
+#define ADDIU(x, i)		01001 x i
+#define SLTI(x, i)		01010 x i
+#define BTEQZ(i)		01100 000 i
+#define BTNEZ(i)		01100 001 i
+#define ADDSP(i)		01100 011 i
+#define MTSP(x)			01100 100 x 00000
+#define LI(x, i)		01101 x i
+#define MOVE(x, y)		01111 x y 00000
+#define LW_SP(x, i)		10010 x i
+#define LW(x, y, i)		10011 x y i
+#define SW_SP(x, i)		11010 x i
+#define SW(x, y, i)		11011 x y i
+#define ADDU(x, y, z)	11100 x y z 01
+#define SUBU(x, y, z)	11100 x y z 11
+#define JR(x)			11101 x 000 00000
+#define JRRA			11101 000 001 00000
+#define MFPC(x)			11101 x 010 00000
+#define JALR(x)			11101 x 110 00000
+#define CMP(x, y)		11101 x y 01010
+#define AND(x, y)		11101 x y 01100
+#define OR(x, y)		11101 x y 01101
+#define MFIH(x)			11110 x 000 00000
+#define MTIH(x) 		11110 x 000 00001
+
