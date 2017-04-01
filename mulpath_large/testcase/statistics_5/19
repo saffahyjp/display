@@ -1,0 +1,177 @@
+Running test LargeTest2
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 150 * 150
+iteration 0
+current time: 0 seconds
+curAns 1e+06
+column sizes:
+0 1 1 0 1 1 1 0 1 1 
+iteration 1
+current time: 3 seconds
+curAns 400293
+column sizes:
+0 1 4 0 1 2 1 0 1 4 
+iteration 2
+current time: 7 seconds
+curAns 300400
+column sizes:
+0 1 6 0 1 5 1 0 1 7 
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 150 * 150
+iteration 0
+current time: 1 seconds
+curAns 1e+06
+column sizes:
+0 1 1 1 1 1 1 1 1 1 
+iteration 1
+current time: 4 seconds
+curAns 200159
+column sizes:
+0 4 1 1 1 1 1 2 1 1 
+iteration 2
+current time: 8 seconds
+curAns 100276
+column sizes:
+0 7 1 1 1 1 1 5 1 1 
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 150 * 150
+iteration 0
+current time: 1 seconds
+curAns 1e+06
+column sizes:
+1 1 1 1 1 1 0 1 1 1 
+iteration 1
+current time: 4 seconds
+curAns 300130
+column sizes:
+3 2 1 1 3 1 0 2 1 1 
+iteration 2
+current time: 8 seconds
+curAns 200237
+column sizes:
+4 5 1 1 6 1 0 3 1 1 
+iteration 3
+current time: 12 seconds
+curAns 100447
+column sizes:
+6 7 1 1 8 1 0 6 1 1 
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 150 * 150
+iteration 0
+current time: 0 seconds
+curAns 900000
+column sizes:
+1 0 1 1 1 0 1 0 1 
+iteration 1
+current time: 3 seconds
+curAns 400197
+column sizes:
+2 0 1 4 1 0 1 0 4 
+iteration 2
+current time: 6 seconds
+curAns 300368
+column sizes:
+5 0 1 7 1 0 1 0 7 
+solving subproblem 300 * 300
+iteration 0
+current time: 15 seconds
+curAns 1e+06
+column sizes:
+1 1 1 1 1 1 1 1 1 1 
+iteration 1
+current time: 35 seconds
+curAns 800678
+column sizes:
+4 2 2 2 2 2 4 2 2 2 
+iteration 2
+current time: 56 seconds
+curAns 701105
+column sizes:
+5 3 3 3 3 3 7 3 3 5 
+iteration 3
+current time: 81 seconds
+curAns 601652
+column sizes:
+7 6 4 4 4 4 10 4 4 6 
+iteration 4
+current time: 110 seconds
+curAns 502481
+column sizes:
+9 9 5 7 5 5 13 5 5 9 
+Test LargeTest2 finished in 202.737 seconds.

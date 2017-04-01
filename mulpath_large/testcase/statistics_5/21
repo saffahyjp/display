@@ -1,0 +1,177 @@
+Running test LargeTest2
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 150 * 150
+iteration 0
+current time: 0 seconds
+curAns 900000
+column sizes:
+0 1 0 1 0 1 1 1 1 
+iteration 1
+current time: 2 seconds
+curAns 400068
+column sizes:
+0 1 0 2 0 1 1 1 1 
+iteration 2
+current time: 5 seconds
+curAns 300239
+column sizes:
+0 1 0 5 0 1 1 1 1 
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 150 * 150
+iteration 0
+current time: 1 seconds
+curAns 1e+06
+column sizes:
+1 1 1 0 1 1 1 1 1 1 
+iteration 1
+current time: 4 seconds
+curAns 300345
+column sizes:
+1 4 1 0 1 2 4 1 2 4 
+iteration 2
+current time: 9 seconds
+curAns 100980
+column sizes:
+1 7 1 0 1 5 7 1 5 7 
+iteration 3
+current time: 13 seconds
+curAns 100687
+column sizes:
+1 10 1 0 1 7 10 1 8 10 
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 150 * 150
+iteration 0
+current time: 1 seconds
+curAns 1e+06
+column sizes:
+1 0 1 1 1 1 1 1 0 1 
+iteration 1
+current time: 4 seconds
+curAns 400408
+column sizes:
+4 0 2 4 1 1 1 2 0 1 
+iteration 2
+current time: 8 seconds
+curAns 200841
+column sizes:
+6 0 5 7 1 1 1 5 0 1 
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 150 * 150
+iteration 0
+current time: 0 seconds
+curAns 900000
+column sizes:
+1 1 1 0 1 1 1 0 1 
+iteration 1
+current time: 3 seconds
+curAns 300216
+column sizes:
+2 1 1 0 4 1 1 0 1 
+iteration 2
+current time: 6 seconds
+curAns 200472
+column sizes:
+5 1 1 0 7 1 1 0 1 
+solving subproblem 300 * 300
+iteration 0
+current time: 12 seconds
+curAns 1e+06
+column sizes:
+1 1 1 1 1 1 1 1 1 1 
+iteration 1
+current time: 31 seconds
+curAns 800780
+column sizes:
+2 2 2 4 2 2 2 2 4 2 
+iteration 2
+current time: 56 seconds
+curAns 602163
+column sizes:
+3 3 5 6 3 3 4 3 7 3 
+iteration 3
+current time: 87 seconds
+curAns 502994
+column sizes:
+4 4 8 8 4 6 5 4 10 6 
+iteration 4
+current time: 122 seconds
+curAns 502905
+column sizes:
+5 5 11 9 7 7 8 5 13 7 
+Test LargeTest2 finished in 218.893 seconds.

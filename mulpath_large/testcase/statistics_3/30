@@ -1,0 +1,68 @@
+Running test LargeTest2
+solving subproblem 300 * 300
+iteration 0
+current time: 11 seconds
+curAns 900000
+column sizes:
+1 1 1 1 1 1 1 1 1 1 
+successfully routed 0 sets of terminals with 0 grids
+picture saved to 20160626180153_0011405422.bmp
+iteration 1
+current time: 29 seconds
+curAns 630686
+column sizes:
+2 2 2 2 2 2 4 4 2 4 
+successfully routed 3 sets of terminals with 686 grids
+picture saved to 20160626180201_0029673110.bmp
+iteration 2
+current time: 54 seconds
+curAns 451374
+column sizes:
+3 5 3 3 5 3 7 6 3 7 
+successfully routed 5 sets of terminals with 1374 grids
+picture saved to 20160626180211_0054561858.bmp
+iteration 3
+current time: 84 seconds
+curAns 272171
+column sizes:
+4 8 6 4 8 6 9 7 4 10 
+successfully routed 7 sets of terminals with 2171 grids
+picture saved to 20160626180223_0084689280.bmp
+iteration 4
+current time: 118 seconds
+curAns 182767
+column sizes:
+7 11 9 5 11 8 11 10 5 13 
+successfully routed 8 sets of terminals with 2767 grids
+picture saved to 20160626180236_0118322369.bmp
+iteration 5
+current time: 156 seconds
+curAns 93370
+column sizes:
+10 14 12 8 14 11 13 10 6 16 
+successfully routed 9 sets of terminals with 3370 grids
+picture saved to 20160626180251_0156172727.bmp
+iteration 6
+current time: 194 seconds
+curAns 93321
+column sizes:
+13 17 15 11 17 14 16 11 7 19 
+successfully routed 9 sets of terminals with 3321 grids
+picture saved to 20160626180306_0194863206.bmp
+iteration 7
+current time: 233 seconds
+curAns 93320
+column sizes:
+16 20 18 14 20 17 19 11 8 22 
+successfully routed 9 sets of terminals with 3320 grids
+picture saved to 20160626180322_0234010279.bmp
+iteration 8
+current time: 274 seconds
+curAns 93319
+column sizes:
+19 23 20 16 23 20 22 11 9 25 
+successfully routed 9 sets of terminals with 3319 grids
+picture saved to 20160626180338_0274600898.bmp
+successfully routed 9 sets of terminals with 3319 grids
+picture saved to 20160626180354_0314222263.bmp
+Test LargeTest2 finished in 314.239 seconds.

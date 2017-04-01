@@ -1,0 +1,172 @@
+Running test LargeTest2
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 150 * 150
+iteration 0
+current time: 0 seconds
+curAns 1e+06
+column sizes:
+1 1 1 0 0 1 1 0 0 1 
+iteration 1
+current time: 3 seconds
+curAns 400275
+column sizes:
+4 1 1 0 0 1 1 0 0 3 
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 150 * 150
+iteration 0
+current time: 0 seconds
+curAns 900000
+column sizes:
+1 0 1 1 1 1 1 1 1 
+iteration 1
+current time: 3 seconds
+curAns 400310
+column sizes:
+1 0 2 4 2 1 1 2 4 
+iteration 2
+current time: 7 seconds
+curAns 100881
+column sizes:
+1 0 5 7 5 1 1 5 7 
+iteration 3
+current time: 11 seconds
+curAns 100879
+column sizes:
+1 0 8 10 8 1 1 8 10 
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 150 * 150
+iteration 0
+current time: 0 seconds
+curAns 1e+06
+column sizes:
+0 1 1 1 1 1 1 1 1 1 
+iteration 1
+current time: 4 seconds
+curAns 100250
+column sizes:
+0 1 1 1 1 1 4 1 4 1 
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 150 * 150
+iteration 0
+current time: 1 seconds
+curAns 1e+06
+column sizes:
+1 1 1 1 1 1 1 1 1 1 
+iteration 1
+current time: 5 seconds
+curAns 200436
+column sizes:
+1 4 1 2 4 1 1 2 1 4 
+iteration 2
+current time: 9 seconds
+curAns 792
+column sizes:
+1 6 1 5 7 1 1 5 1 7 
+solving subproblem 300 * 300
+iteration 0
+current time: 17 seconds
+curAns 1e+06
+column sizes:
+1 1 1 1 1 1 1 1 1 1 
+iteration 1
+current time: 39 seconds
+curAns 800770
+column sizes:
+2 3 2 4 2 2 2 2 2 2 
+iteration 2
+current time: 66 seconds
+curAns 701247
+column sizes:
+3 5 3 6 3 3 3 3 3 5 
+iteration 3
+current time: 96 seconds
+curAns 601935
+column sizes:
+6 6 4 6 4 4 4 4 4 8 
+iteration 4
+current time: 128 seconds
+curAns 502773
+column sizes:
+9 8 5 9 5 7 5 5 5 10 
+iteration 5
+current time: 163 seconds
+curAns 502756
+column sizes:
+12 10 6 9 6 9 6 6 6 11 
+Test LargeTest2 finished in 256.704 seconds.

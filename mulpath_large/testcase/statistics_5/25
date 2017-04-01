@@ -1,0 +1,177 @@
+Running test LargeTest2
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 150 * 150
+iteration 0
+current time: 1 seconds
+curAns 1e+06
+column sizes:
+1 1 1 1 1 1 1 1 1 1 
+iteration 1
+current time: 5 seconds
+curAns 100198
+column sizes:
+1 1 1 1 1 1 1 1 2 4 
+iteration 2
+current time: 9 seconds
+curAns 443
+column sizes:
+1 1 1 1 1 1 1 1 5 7 
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 150 * 150
+iteration 0
+current time: 0 seconds
+curAns 1e+06
+column sizes:
+1 1 1 1 1 1 1 1 0 1 
+iteration 1
+current time: 4 seconds
+curAns 100282
+column sizes:
+4 1 1 1 1 1 1 4 0 1 
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 150 * 150
+iteration 0
+current time: 0 seconds
+curAns 1e+06
+column sizes:
+0 1 1 1 0 1 0 0 1 1 
+iteration 1
+current time: 3 seconds
+curAns 400353
+column sizes:
+0 3 1 4 0 1 0 0 1 1 
+iteration 2
+current time: 6 seconds
+curAns 400352
+column sizes:
+0 5 1 5 0 1 0 0 1 1 
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 37 * 37
+solving subproblem 37 * 38
+solving subproblem 38 * 37
+solving subproblem 38 * 38
+solving subproblem 75 * 75
+solving subproblem 150 * 150
+iteration 0
+current time: 0 seconds
+curAns 1e+06
+column sizes:
+1 0 1 0 1 1 1 1 0 1 
+iteration 1
+current time: 3 seconds
+curAns 400224
+column sizes:
+4 0 1 0 2 1 4 1 0 1 
+iteration 2
+current time: 6 seconds
+curAns 300457
+column sizes:
+7 0 1 0 5 1 7 1 0 1 
+solving subproblem 300 * 300
+iteration 0
+current time: 13 seconds
+curAns 1e+06
+column sizes:
+1 1 1 1 1 1 1 1 1 1 
+iteration 1
+current time: 36 seconds
+curAns 701081
+column sizes:
+2 4 2 2 4 2 2 2 4 2 
+iteration 2
+current time: 67 seconds
+curAns 502071
+column sizes:
+5 7 3 5 7 3 3 3 7 3 
+iteration 3
+current time: 99 seconds
+curAns 402805
+column sizes:
+7 10 4 8 9 4 6 4 10 4 
+iteration 4
+current time: 137 seconds
+curAns 303657
+column sizes:
+10 11 5 11 11 5 9 5 13 7 
+iteration 5
+current time: 173 seconds
+curAns 303451
+column sizes:
+13 12 6 14 13 8 12 6 16 8 
+iteration 6
+current time: 209 seconds
+curAns 303450
+column sizes:
+16 13 7 17 16 10 15 7 18 8 
+Test LargeTest2 finished in 302.879 seconds.

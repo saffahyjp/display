@@ -1,0 +1,3 @@
+{% for page in pages %}
+  <h4><div class="dateSty">{{ page.year }}年{{ page.month }}月{{ page.day }}日</div><center><a href="/{{ page.id }}.html">{{ page.title }}</a></center></h4>
+{% endfor %}

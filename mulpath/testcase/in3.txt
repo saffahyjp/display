@@ -1,0 +1,173 @@
+10 10
+Terminal
+3
+9 5
+7 3
+1 3
+Terminal
+3
+9 1
+8 8
+9 3
+Terminal
+3
+8 1
+4 8
+1 8
+Terminal
+3
+6 6
+6 1
+0 5
+Terminal
+3
+2 0
+0 1
+7 9
+Terminal
+3
+8 5
+0 7
+6 5
+Terminal
+3
+2 7
+3 3
+9 6
+Terminal
+3
+1 9
+6 9
+1 0
+Terminal
+3
+8 6
+7 5
+4 3
+Terminal
+3
+3 6
+8 3
+7 0
+Terminal
+3
+2 8
+0 0
+6 0
+Terminal
+3
+5 4
+9 8
+5 5
+Terminal
+3
+5 9
+5 3
+4 7
+Terminal
+3
+2 4
+5 8
+1 7
+Terminal
+3
+1 5
+4 4
+5 6
+Terminal
+3
+4 6
+6 3
+5 2
+Terminal
+3
+1 2
+4 5
+0 8
+Terminal
+3
+0 6
+9 2
+7 6
+Terminal
+3
+9 7
+9 4
+3 4
+Terminal
+3
+1 4
+3 9
+6 2
+Terminal
+3
+2 3
+8 0
+3 8
+Terminal
+3
+8 2
+6 8
+0 4
+Terminal
+3
+8 4
+7 4
+3 5
+Terminal
+3
+5 0
+1 1
+9 0
+Terminal
+3
+5 7
+7 1
+0 2
+Terminal
+3
+8 9
+3 7
+3 1
+Terminal
+3
+4 1
+2 1
+3 2
+Terminal
+3
+7 2
+4 9
+4 2
+Terminal
+3
+7 7
+7 8
+8 7
+Terminal
+3
+6 4
+0 3
+5 1
+Obstacle
+1 6
+Obstacle
+2 6
+Obstacle
+0 9
+Obstacle
+6 7
+Obstacle
+4 0
+Obstacle
+2 9
+Obstacle
+9 9
+Obstacle
+3 0
+Obstacle
+2 2
+Obstacle
+2 5
+Route 0
+Balanced
